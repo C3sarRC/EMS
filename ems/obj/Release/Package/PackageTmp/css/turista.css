@@ -1,0 +1,22 @@
+﻿ .tdNom {
+        background-color :#C6C1FF;
+            border-left: solid #F2F2F2 1.0pt; 
+        border-bottom: solid #F2F2F2 1.0pt; 
+        font-size: 13px;
+        font-family: Arial, Helvetica, sans-serif; 
+        padding: 0cm 3.0pt 0cm 3.0pt; 
+        height: 12.0pt;
+
+    }
+    .tdDat {
+       padding:5px 1px;
+       text-align:left; 
+       font-size: 9pt;
+       font-family: Arial, Helvetica, sans-serif;
+    }
+    .tdTexto {
+        font-size: 13px;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 0cm 3.0pt 0cm 3.0pt;
+        height: 12.0pt;
+    }

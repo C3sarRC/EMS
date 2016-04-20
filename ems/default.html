@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="robots" content="index, follow" />
+    <meta name="title" content="Encuesta mensual de servicios" />
+    <meta name="author" content="Instituto Nacional de Estadística y Geografía (INEGI)" />
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.js"></script>
+    <script type="text/javascript" src="js/angular-messages.min.js"></script>
+    <script type="text/javascript" src="js/fusioncharts.js"></script>
+    <script type="text/javascript" src="js/turista.js"></script>
+    <script type="text/javascript" src="js/fusioncharts.charts.js"></script>
+    <script type="text/javascript" src="js/alasql.min.js"></script>
+    <script type="text/javascript" src="js/fusioncharts.theme.fint.js"></script>
+    <link href="css/turista.css" type="text/css" rel="stylesheet" />
+
+    <title>Encuesta mensual de servicios</title>
+</head>
+<body ng-app="ems" ng-controller="turista">
+
+    <div style="width: 670px">
+        <div layout="row">
+            <div flex>
+                <div id="tableContainer" class="row text-center">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td colspan="3" align="center" bgcolor="#FFFFFF">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="30" colspan="3" align="center" bgcolor="#DEE4E9">
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #012D59;
+                        font-weight: bold;">Servicios privados no financieros</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table-au" width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td bgcolor="#C6C1FF" style="border-left: solid #F2F2F2 1.0pt;border-bottom: solid #F2F2F2 1.0pt;font-size: 9pt;font-family: Arial, Helvetica, sans-serif;padding: 0cm 3.0pt 0cm 3.0pt;height: 12.0pt;">&nbsp;</td>
+                            <td colspan="13" bgcolor="#C6C1FF" style="border-left: solid #F2F2F2 1.0pt; border-bottom: solid #F2F2F2 1.0pt;font-size: 9pt;font-family: Arial, Helvetica, sans-serif;text-align:center;padding: 5px 2px; height: 12.0pt"><strong>Índice (base 2008=100)</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNom">&nbsp;</td>
+                            <td class="tdNom" style="text-align:center;" colspan="{{cols}}">{{anio}}</td>
+                            <td class="tdNom" style="text-align:center;">{{anioAct}}</td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td class="tdNom" style="width:175px;height:27px;">Variable</td>
+                            <td class="tdNom" ng-repeat="m in meses track by $index" ng-hide="m == ''">{{m}}</td>
+                        </tr>
+                        <tr >
+                            <td class="tdDat" style="width:175px;height:27px;">{{indice[0].descripcion}}</td>
+                            <td class="tdDat" ng-repeat="i in indice[0] track by $index" style="text-align:right" ng-hide="i == indice[0].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td  bgcolor="#F0F0F0" style="padding:5px 1px; width:175px;font-size: 9pt;font-family: Arial, Helvetica, sans-serif;">{{indice[1].descripcion}}</td>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; font-size: 9pt;text-align:right;font-family: Arial, Helvetica, sans-serif;" ng-repeat="i in indice[1] track by $index" style="text-align:right" ng-hide="i == indice[1].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tdDat" style="width:175px;height:27px;">{{indice[2].descripcion}}</td>
+                            <td class="tdDat" ng-repeat="i in indice[2] track by $index" style="text-align:right" ng-hide="i == indice[2].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; width:175px; font-size: 9pt;text-align:left;font-family: Arial, Helvetica, sans-serif;" >{{indice[3].descripcion}}</td>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; font-size: 9pt;text-align:right;font-family: Arial, Helvetica, sans-serif;" ng-repeat="i in indice[3] track by $index" style="text-align:right" ng-hide="i == indice[3].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="notapie">
+                                    {{estatus[0].nombre}}
+                                </span>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div layout="row">
+            <div flex>
+                <div id="tableContainer" class="row text-center">
+
+                    <table class="table-au" id="tabla" width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td bgcolor="#C6C1FF" style="border-left: solid #F2F2F2 1.0pt;border-bottom: solid #F2F2F2 1.0pt;font-size: 9pt;font-family: Arial, Helvetica, sans-serif;padding: 0cm 3.0pt 0cm 3.0pt;height: 12.0pt;">&nbsp;</td>
+                            <td colspan="13" bgcolor="#C6C1FF" style="border-left: solid #F2F2F2 1.0pt; border-bottom: solid #F2F2F2 1.0pt;font-size: 9pt;font-family: Arial, Helvetica, sans-serif;text-align:center;padding: 5px 2px; height: 12.0pt"><strong>Variación anual</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNom">&nbsp;</td>
+
+                            <td class="tdNom" style="text-align:center;" colspan="{{cols}}">{{anio+"-"+(anio-1)}}</td>
+                            <td class="tdNom" style="text-align:center;">{{(anioAct)+"-"+(anioAct-1)}}</td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td class="tdNom" style="width:175px;height:27px;">Variable</td>
+                            <td class="tdNom" ng-repeat="m in meses track by $index" ng-hide="m == ''">{{m}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tdDat" style="width:175px;height:27px;">{{variacion[0].descripcion}}</td>
+                            <td class="tdDat" ng-repeat="i in variacion[0] track by $index" style="text-align:right" ng-hide="i == variacion[0].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; width:175px;font-size: 9pt;font-family: Arial, Helvetica, sans-serif;">{{variacion[1].descripcion}}</td>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; font-size: 9pt;text-align:right;font-family: Arial, Helvetica, sans-serif;" ng-repeat="i in variacion[1] track by $index" style="text-align:right" ng-hide="i == variacion[1].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tdDat" style="width:175px;height:27px;">{{variacion[2].descripcion}}</td>
+                            <td class="tdDat" ng-repeat="i in variacion[2] track by $index" style="text-align:right" ng-hide="i == variacion[2].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; width:175px; font-size: 9pt;text-align:left;font-family: Arial, Helvetica, sans-serif;">{{variacion[3].descripcion}}</td>
+                            <td bgcolor="#F0F0F0" style="padding:5px 1px; font-size: 9pt;text-align:right;font-family: Arial, Helvetica, sans-serif;" ng-repeat="i in variacion[3] track by $index" style="text-align:right" ng-hide="i == variacion[3].descripcion || i==''">{{i}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="notapie">
+                                    {{estatus[0].nombre}}
+                                </span>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div layout="row">
+            <div flex>
+                <div id="graph1" style="text-align:center"></div>
+
+            </div>
+
+            <span class="notapie">
+                {{estatus[0].nombre}}
+            </span>
+            <br />
+            <br />
+        </div>
+        <br />
+        <div layout="row" ng-controller="granjero">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td height="30" align="center" bgcolor="#dee4e9" colspan="3">
+                            <span style="color: rgb(1, 45, 89); font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold;">Principales variables</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            &nbsp;
+                        </td>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="150" align="left" valign="middle" bgcolor="#ffffff">
+                            <span class="tdTexto">Variable:</span>
+                        </td>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <div id="UpdatePanel3">
+                                <select ng-model="vari" ng-change="getSectores(vari)" ng-options="v.descripcion for v in variables track by v.id_variable" style="width: 520px;"></select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <span class="tdTexto">Sector: </span>
+                        </td>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <div id="UpdatePanel1">
+                                <select ng-model="sec" ng-change="getActividad(sec)" ng-options="v.descripcion for v in sectores track by v.id_variable" style="width: 520px;"></select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <span class="tdTexto">Actividad económica:</span>
+                        </td>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <div id="UpdatePanel2">
+                                <select ng-model="act" ng-options="v.descripcion for v in actividades track by v.id_variable" style="width: 520px;"></select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <span class="tdTexto">Tipo de dato:</span>
+                        </td>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            <div id="UpdatePanel4">
+                                <table id="rblTipoDato">
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="radio" ng-model="ind" value="1"><label class="tdTexto">Índice (base 2008=100)</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="radio" ng-model="ind" value="2"><label class="tdTexto">Variación anual</label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            &nbsp;
+                        </td>
+                        <td align="left" valign="middle" bgcolor="#ffffff">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr><td colspan="2" style="text-align:center"><input type="submit" name="Button1" value="Ver consulta" id="Button1" ng-click="grafica()"></td><td></td></tr>
+                </tbody>
+            </table>
+            <br />
+            <div layout="row">
+                <div flex>
+                    <div id="graph2" style="text-align:center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Usuarios\ernesto.herrera\Escritorio\public_ems</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/ems.dll">
+      <publishTime>04/13/2016 14:18:55</publishTime>
+    </File>
+    <File Include="bin/menu.dll">
+      <publishTime>07/12/2013 10:34:00</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/02/2013 12:10:10</publishTime>
+    </File>
+    <File Include="bin/tools.dll">
+      <publishTime>07/12/2013 10:34:00</publishTime>
+    </File>
+    <File Include="css/turista.css">
+      <publishTime>04/13/2016 12:23:16</publishTime>
+    </File>
+    <File Include="global.asax">
+      <publishTime>04/13/2016 12:22:00</publishTime>
+    </File>
+    <File Include="index.html">
+      <publishTime>04/13/2016 13:43:27</publishTime>
+    </File>
+    <File Include="js/alasql.min.js">
+      <publishTime>03/31/2016 12:41:14</publishTime>
+    </File>
+    <File Include="js/angular-messages.min.js">
+      <publishTime>03/22/2016 11:43:04</publishTime>
+    </File>
+    <File Include="js/angular-route.js">
+      <publishTime>03/22/2016 11:43:04</publishTime>
+    </File>
+    <File Include="js/angular.min.js">
+      <publishTime>03/22/2016 11:43:04</publishTime>
+    </File>
+    <File Include="js/app.js">
+      <publishTime>04/13/2016 11:29:20</publishTime>
+    </File>
+    <File Include="js/fusioncharts.charts.js">
+      <publishTime>03/28/2016 10:47:20</publishTime>
+    </File>
+    <File Include="js/fusioncharts.js">
+      <publishTime>03/22/2016 12:13:58</publishTime>
+    </File>
+    <File Include="js/fusioncharts.theme.fint.js">
+      <publishTime>03/28/2016 10:47:20</publishTime>
+    </File>
+    <File Include="js/jquery.min.js">
+      <publishTime>03/22/2016 11:43:04</publishTime>
+    </File>
+    <File Include="js/minero.js">
+      <publishTime>04/14/2016 12:10:36</publishTime>
+    </File>
+    <File Include="js/turista.js">
+      <publishTime>04/13/2016 14:16:33</publishTime>
+    </File>
+    <File Include="plantilla/minero.html">
+      <publishTime>04/13/2016 12:48:54</publishTime>
+    </File>
+    <File Include="plantilla/turista.html">
+      <publishTime>04/13/2016 12:57:35</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>04/14/2016 12:12:21</publishTime>
+    </File>
+    <File Include="ws_turista.asmx">
+      <publishTime>04/13/2016 10:30:37</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

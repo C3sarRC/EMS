@@ -1,0 +1,16 @@
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\bin\ems.dll.config
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\bin\ems.dll
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\bin\ems.pdb
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\bin\menu.dll
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\bin\Newtonsoft.Json.dll
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\bin\tools.dll
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\obj\Release\ems.dll
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\obj\Release\ems.pdb
+C:\Users\ernesto.herrera\Source\Repos\ems\ems\ems\obj\Release\ems.csprojResolveAssemblyReference.cache
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\bin\ems.dll.config
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\bin\ems.dll
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\bin\ems.pdb
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\bin\Newtonsoft.Json.dll
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\obj\Release\ems.csprojResolveAssemblyReference.cache
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\obj\Release\ems.dll
+C:\Users\ANGEL.PARGA\Documents\Proyectos\2016\Mensuales\EMS\ems\ems\obj\Release\ems.pdb
