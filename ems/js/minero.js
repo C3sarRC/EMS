@@ -1,5 +1,5 @@
 ﻿
-var app = angular.module("ems", [ 'ngMessages']);
+var app = angular.module("ems", ['ngMessages']);
 
 
 app.controller('minero', function ($scope, $http, $timeout) {
@@ -168,7 +168,7 @@ app.controller('minero', function ($scope, $http, $timeout) {
         var i = JSON.stringify({ variable: $scope.vari.id_variable, actividad: activAll, tipo_dato: $scope.tipoDat.id_dato, anio: anios, mes: mesM });
         $http.post('ws_turista.asmx/getMinero', i).success(function ($response) {
             if ($response.d!="") {
-                // $scope.datosMin = JSON.parse($response.d);
+               
             data = JSON.parse($response.d);
             
             datosR = [];
@@ -363,7 +363,7 @@ app.controller('minero', function ($scope, $http, $timeout) {
                                 j = "{";
                             }
                         }
-                    }////
+                    }
                 }
                 $scope.datosMin = datosR;
                
@@ -393,9 +393,8 @@ app.controller('minero', function ($scope, $http, $timeout) {
                 }
                 aux = 0;
             }
-
+           
             
-
             if ($scope.mes.id_mes == 0 && $scope.anio.anio == "Todos" || $scope.mes.id_mes == 0 && $scope.anio.anio != "Todos") {
                 $scope.colAnios = 12;
                 $scope.tamDin = 12;
@@ -414,9 +413,19 @@ app.controller('minero', function ($scope, $http, $timeout) {
                 else { $timeout($scope.datosS); }
             })
         })
+
         $scope.datosS = function () {
             var truco = document.getElementById("truco");
             truco.value = document.getElementById("datos").outerHTML;
+            $scope.tamTotal = document.getElementById("datos21").offsetWidth;
+            document.getElementById("tabCont").style.width = ($scope.tamTotal+10) + 'px';
+
+            sec = document.getElementById("sec").offsetWidth;
+            desc = document.getElementById("desc").offsetWidth;
+            mes = document.getElementById("mes").offsetWidth;
+            $scope.mesT = mes;
+            $scope.secT = sec;
+            $scope.descT = desc;
         }
 }
 });

@@ -74,7 +74,7 @@
             </tr>
             <tr>
                 <td align="left" valign="middle" bgcolor="#ffffff">
-                    <select ng-model="sec" ng-change="getActividad(sec)" ng-options="v.presenta + ' '+v.descripcion for v in sectores " style="width: 300px;"></select>
+                    <select ng-model="sec" ng-change="getActividad(sec)" ng-options="v.id_variable + ' '+v.descripcion for v in sectores " style="width: 300px;"></select>
                 </td>
                 <td align="left" valign="middle" bgcolor="#ffffff">
                     <select ng-model="act" ng-disabled="sec.id_variable==''" ng-options="v.id_variable+' '+v.descripcion for v in actividades " style="width: 300px;"></select>
@@ -159,7 +159,7 @@
     </table>
     <table></table>
     <div ng-hide="datosMin=='' || datosMin=='ERR'" ng-init="datosMin=''">
-        <div id="divCuadro" style="width: 880px;  overflow: auto;">
+        <div id="divCuadro" style="width: 880px; height: 890px; overflow: scroll;">
             <table>
                 <tbody>
                     <tr>
@@ -174,30 +174,27 @@
                     </tr>
                 </tbody>
             </table>
-            <table cellspacing="0" cellpadding="4" id="datos21"    ng-show="datosMin.length>0" style="table-layout: fixed; width:100%; font-family: Arial, Helvetica, sans-serif; font-size: 13px; ">
-                
-                <thead>
-                      <tr>
-                        <th id="sec"  style="border-width: 1pt 1pt 1pt medium; width:100px; font-size: 8pt; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; " bgcolor="#c6c1ff" rowspan="2">Sector/dominio</th>
-                        <th id="desc" style="border-width: 1pt 1pt 1pt medium; width:500px; font-size: 8pt; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; " bgcolor="#c6c1ff" rowspan="2" >Descripción</th>
-                        <th  width="{{tamDin*50 +'px'}}" style="border-width: 1pt 1pt 1pt medium; font-size: 8pt; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 8pt;" bgcolor="#c6c1ff" colspan="{{colAnios}}" ng-repeat="a in aniosMin">{{a}}</th>
+
+            <table cellspacing="0" cellpadding="4"    ng-show="datosMin.length>0" style="table-layout: fixed; width:100%; font-family: Arial, Helvetica, sans-serif; font-size: 13px; ">
+                <tbody>
+                    <tr>
+                        <td width="100px;" style="border-width: 1pt 1pt 1pt medium; font-size: 8pt; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; " bgcolor="#c6c1ff" rowspan="2">Sector/dominio</td>
+                        <td width="500px;" style="border-width: 1pt 1pt 1pt medium; font-size: 8pt; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; " bgcolor="#c6c1ff" rowspan="2" >Descripción</td>
+                        <td width="{{tamDin*50 +'px'}}" style="border-width: 1pt 1pt 1pt medium; font-size: 8pt; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 8pt;" bgcolor="#c6c1ff" colspan="{{colAnios}}" ng-repeat="a in aniosMin">{{a}}</td>
                     </tr>
                     <tr>
-                        <th id="mes" style="border-width: 1pt 1pt 1pt medium; width:50px; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 8pt;" bgcolor="#c6c1ff" ng-repeat="m in mesesConsulta">{{m.nombre}}</th>
+                        <td width="50px" style="border-width: 1pt 1pt 1pt medium; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 8pt;" bgcolor="#c6c1ff" ng-repeat="m in mesesConsulta">{{m.nombre}}</td>
                     </tr>
-                </thead>
-            </table>
-                            <div id="tabCont" style="height: 450px;overflow: scroll; overflow-x:hidden; margin: 0 auto;">
-                                        <div ng-repeat="x in datosMin track by $index" style="display:flex;font-family: Arial, Helvetica, sans-serif; font-size: 13px; ">
-                                            <div style="text-align:right; height:auto; padding: 4px 0px 4px 0px;" ng-style="{width:secT}" ><span ng-show="x['Sector / dominio']==0"></span>
-                                                <span ng-show="x['Sector / dominio']!=0">{{x["Sector / dominio"]}}</span></div>   
-                                            <div style="text-align:left; height:auto; padding: 4px 0px 4px 0px; text-indent: 2px;" ng-style="{width:descT}">{{x["Descripción"]}}</div>
-                                            <div style="text-align:right; height:auto; padding: 4px 0px 4px 0px;" ng-style="{width:mesT}" id="mes2" ng-repeat="i in x track by $index" ng-hide="i=='' || i==x['Sector / dominio'] || i==x['Descripción']">{{i}}</div>
+
+                    <tr ng-repeat="x in datosMin track by $index">
+                        <td style="text-align:right" width="100px;"><span ng-show="x['Sector / dominio']==0"></span><span ng-show="x['Sector / dominio']!=0">{{x["Sector / dominio"]}}</span></td>
+                        <td style="text-align:left; width:500px;">{{x["Descripción"]}}</td>
+                        <td style="text-align:right" width="50px;" ng-repeat="i in x track by $index" ng-hide="i=='' || i==x['Sector / dominio'] || i==x['Descripción']">{{i}}</td>
                     
-                                        </div>
-                            </div>
-                     
-           
+                    </tr>
+
+                </tbody>
+            </table>
             <table cellspacing="0" cellpadding="4"   id="datos"    ng-show="datosMin.length>0" style=" display:none;table-layout: fixed; width:100%; font-family: Arial, Helvetica, sans-serif; font-size: 13px; ">
                 <tbody>
                      <tr>
@@ -262,7 +259,6 @@
                 </td>
             </tr>
             <tr>
-                
                 <td align="left" style="font-family: Arial, Helvetica, sans-serif; font-size: 8pt;">
                     <select name="ddlExportaMinero" id="ddlExportaMinero" style="width: 200px;">
                         <option value="1">Excel 5.0 (.xls)</option>
@@ -276,7 +272,5 @@
 
     </div>
     </form>
-  
 </body>
 </html>
-

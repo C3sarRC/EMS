@@ -1,8 +1,12 @@
-﻿var app = angular.module("ems");
+﻿var app = angular.module("ems", ['ngMessages']);
 
 app.controller('turista', function ($scope, $http) {
     var i = JSON.stringify({ tipo_dato: 1, variable: '1,2,3,4', actividad: 0 });
     var v = JSON.stringify({ tipo_dato: 2, variable: '1,2,3,4', actividad: 0 });
+    var f = JSON.stringify({ idFuente: 1 });
+    $http.post("./ws_turista.asmx/getEstatus", f).success(function ($response) {
+        $scope.estatus =  JSON.parse($response.d);
+    });
     $http.post("./ws_turista.asmx/MostrarDatos", i).success(function ($response) {
        
         var aux = 0;
@@ -66,6 +70,10 @@ app.controller('turista', function ($scope, $http) {
                     $scope.meses[i] = $scope.meses[i].substring(0,3);
                 }
             }
+            mesAct = $scope.meses[0];
+            for (var j = 0; j < $scope.meses.length; j++) {
+                $scope.meses[j] = $scope.meses[j].substring(0,3);
+            }
             $scope.cols = aux2 - 2;
         
             for (var i = 0; i < 2; i++) {
@@ -97,7 +105,7 @@ app.controller('turista', function ($scope, $http) {
                         {
                             "chart": {
                                 "caption": "Variación anual",
-                                "subcaption": $scope.meses[0] + " "+$scope.anioAct,
+                                "subcaption": mesAct + " " + $scope.anioAct,
                                 "yaxisname": "",
                                 "numberprefix": "",
                                 "bgcolor": "FFFFFF",
@@ -206,9 +214,10 @@ app.controller('granjero', function ($scope, $http,$timeout) {
                                 "paletteColors": "#0075c2",
                                 "bgcolor": "FFFFFF",
                                 "useroundedges": "1",
-                                "rotatevalues": "1",
                                 "showborder": "0",
-                                "formatNumberScale": "0"
+                                "labelDisplay": "rotate",
+                                "formatNumberScale": "0",
+                                "rotatevalues":"0"
                             },
                             "data": dat
                         }

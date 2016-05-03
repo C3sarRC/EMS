@@ -209,7 +209,8 @@ namespace ems
                         variable f = new variable()
                         {
                             id_variable = rdr["ID_ACTIVIDAD_PADRE"].ToString(),
-                            descripcion = rdr["DESCRIPCION"].ToString()
+                            descripcion = rdr["DESCRIPCION"].ToString(),
+                            presenta=rdr["PRESENTACION"].ToString()
                         };
                         list.Add(f);
                     }
@@ -284,7 +285,7 @@ namespace ems
                         {
                             datosMinero f = new datosMinero()
                             {
-                                id_variable=rdr["ID_ACTIVIDAD"].ToString(),
+                                id_variable=rdr["presentacion"].ToString(),
                                 descripcion = rdr["descripcion"].ToString(),
                                 anio = rdr["anio"].ToString(),
                                  Ene = rdr["Ene"].ToString(),
@@ -372,6 +373,7 @@ public class variable
 {
     public string id_variable { set; get; }
     public string descripcion { set; get; }
+    public string presenta { set; get; }
 }
 public class estatus
 {

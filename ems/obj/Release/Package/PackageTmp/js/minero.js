@@ -1,8 +1,9 @@
-﻿var app = angular.module("ems");
+﻿
+var app = angular.module("ems", [ 'ngMessages']);
 
 
+app.controller('minero', function ($scope, $http, $timeout) {
 
-app.controller('minero', function ($scope, $http,$timeout) {
     var i = JSON.stringify({ dat: "0" });
     $http.post('ws_turista.asmx/getVariable',i).success(function ($response) {
         $scope.variables = JSON.parse($response.d);
@@ -57,7 +58,7 @@ app.controller('minero', function ($scope, $http,$timeout) {
         });
     }
     $scope.getActividad = function (sec) {
-        if (sec.id_variable!='') {
+        if (sec.id_variable != '') {
             var i = JSON.stringify({ actividad: sec.id_variable });
             $scope.actividades = [];
             $scope.act = "";
@@ -66,7 +67,9 @@ app.controller('minero', function ($scope, $http,$timeout) {
                 $scope.actividades.unshift({ "id_variable": "", "descripcion": "Todos" });
                 $scope.act = $scope.actividades[0];
             });
-        }
+        } else {
+
+            $scope.act=$scope.actividades[0];}
     }
    
     $scope.meses = [
@@ -108,24 +111,37 @@ app.controller('minero', function ($scope, $http,$timeout) {
 
         if ($scope.sec.id_variable == "") {
            
-            for (var i = 1; i < $scope.sectores.length; i++) {
-                if (i == $scope.sectores.length - 1) {
-                    datosAct =datosAct+ $scope.sectores[i].id_variable;
+            for (var i = 0; i < $scope.sectores.length; i++) {
+                if (i == 0) {
+                    datosAct = datosAct + 0+',';
                 } else {
-                    datosAct =datosAct+ $scope.sectores[i].id_variable + ',';
+                    if (i == $scope.sectores.length - 1) {
+                        datosAct = datosAct + $scope.sectores[i].id_variable;
+                    } else {
+                        datosAct = datosAct + $scope.sectores[i].id_variable + ',';
+                    }
                 }
+               
                 
             }
             activAll = " and a.id_actividad_padre in (" + datosAct + ")";
         }
         else {
             if ($scope.act.id_variable == "") {
-                for (var i = 1; i < $scope.actividades.length; i++) {
-                    if (i == $scope.actividades.length - 1) {
-                        datosAct = datosAct + $scope.actividades[i].id_variable;
+                for (var i = 0; i < $scope.actividades.length; i++) {
+                    if (i == 0) {
+ 
+                        datosAct = datosAct + $scope.sec.id_variable + ',';
                     } else {
-                        datosAct = datosAct + $scope.actividades[i].id_variable + ',';
+                        if (i == $scope.actividades.length - 1) {
+                            datosAct = datosAct + $scope.actividades[i].id_variable;
+                        } else {
+                            datosAct = datosAct + $scope.actividades[i].id_variable + ',';
+                        }
+
                     }
+
+                  
 
                 }
                 activAll = " and a.id_actividad in (" + datosAct + ")";
@@ -377,20 +393,31 @@ app.controller('minero', function ($scope, $http,$timeout) {
                 }
                 aux = 0;
             }
+
+            
+
             if ($scope.mes.id_mes == 0 && $scope.anio.anio == "Todos" || $scope.mes.id_mes == 0 && $scope.anio.anio != "Todos") {
                 $scope.colAnios = 12;
+                $scope.tamDin = 12;
                 
             } else {
                 $scope.colAnios = alasql('select distinct nombre from ?', [$scope.mesesConsulta]);
+                $scope.tamDin =$scope.colAnios.length;
+                
             }
             } else {
                 $scope.datosMin = "ERR";
             }
+
+            $scope.$watch('datosMin', function () {
+                if ($scope.datosMin == undefined) { }
+                else { $timeout($scope.datosS); }
+            })
         })
-
-  
- 
-
+        $scope.datosS = function () {
+            var truco = document.getElementById("truco");
+            truco.value = document.getElementById("datos").outerHTML;
+        }
 }
 });
 function descargarFile() {
