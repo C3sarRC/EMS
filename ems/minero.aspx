@@ -219,7 +219,8 @@
                         <td width="50px" style="border-width: 1pt 1pt 1pt medium; border-style: solid solid solid none; border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) currentColor; border-image: none; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 8pt;" bgcolor="#c6c1ff" ng-repeat="m in mesesConsulta">{{m.nombre}}</td>
                     </tr>
                     <tr ng-repeat="x in datosMin track by $index">
-                        <td width="50px;" ng-repeat="i in x track by $index" ng-hide="i=='' || i==0">{{i}}</td>
+                        
+                        <td width="50px;"  ng-repeat="i in x track by $index" ng-hide="i=='' || i==0" ng-style="i=='48-49' && {'text-align': 'right'}">{{i}}</td>
                     </tr>
                     <tr style="font-size:8pt;">
                         <br />

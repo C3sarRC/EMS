@@ -11,17 +11,21 @@ app.controller('turista', function ($scope, $http) {
        
         var aux = 0;
         var aux2 = 0;
+        var aux3 = 0;
         var data = JSON.parse($response.d);
         for (key in data[0]) {
             if (data[0][key] != '') {
                 if (data[0][key] == data[0]["anioAct"]) {
                     aux2 = aux;
+                    aux3 = 0;
                 } else {
-                 aux = aux + 1;
+                    aux = aux + 1;
+                    aux3 = aux3 + 1;
                 }
                
             } else { }
         }
+        $scope.colsAct = aux3;
         $scope.cols = aux2 - 2;
         for (var i = 0; i < 2; i++) {
             for (var x = 0; x < data[i].length; x++) {
@@ -48,7 +52,9 @@ app.controller('turista', function ($scope, $http) {
             $scope.anio = data[0]['anio'];
             $scope.anioAct = data[0]['anioAct'];
             for (key in data[0]) {
-                aux3 = aux3 + 1;
+                if (data[0][key]!='') {
+                    aux3 = aux3 + 1;
+                }
                 if (aux3 == 3) {
                      dat.push({ "nombre": key, "val": data[0][key] });
                 }

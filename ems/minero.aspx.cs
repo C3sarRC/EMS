@@ -26,7 +26,7 @@ namespace ems
             {
                 Response.AddHeader("content-disposition", "attachment;filename=EMS.xls");
                 Response.ContentEncoding = System.Text.Encoding.Unicode;
-                Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+               Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
                 Response.ContentType = "application/vnd.xls";
                 Response.Write(output);
 
